@@ -1,5 +1,5 @@
 {
-  "name": "BITS-BITT",
+  "name": "BITZ-BITT",
   "version": "1.0.0",
   "description": "",
   "main": "truffle.js",
@@ -25,7 +25,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cromlehg/BITS-BITT.git"
+    "url": "git+https://github.com/cromlehg/BITZ-BITT.git"
   },
   "keywords": [
     "solidity",
@@ -37,7 +37,7 @@
   "author": "Alexander Strakh",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cromlehg/BITS-BITT/issues"
+    "url": "https://github.com/cromlehg/BITZ-BITT/issues"
   },
-  "homepage": "https://github.com/cromlehg/BITS-BITT#readme"
+  "homepage": "https://github.com/cromlehg/BITZ-BITT#readme"
 }

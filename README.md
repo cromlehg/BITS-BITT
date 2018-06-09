@@ -1,10 +1,10 @@
-![BITT and BITS Tokens](logo.png "BITT and BITS Token")
+![BITT and BITZ Tokens](logo.png "BITT and BITZ Token")
 
 # BITS Token smart contract
 
 * _Standard_        : [ERC20](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md)
-* _[Name](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md#name)_            : BITS
-* _[Ticker](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md#symbol)_        : BITS
+* _[Name](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md#name)_            : BITZ
+* _[Ticker](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md#symbol)_        : BITZ
 * _[Decimals](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md#decimals)_    : 18
 * _Emission_        : Single
 * _Crowdsales_      : 1
@@ -30,7 +30,7 @@ There is a special function to return 3rd party tokens that were sent by mistake
 Each stage has a direct minting function in wei. This is made to support the external payment gateways.
 
 ### Contracts contains
-1. _BITSToken_ - BITS Token contract
+1. _BITZToken_ - BITZ Token contract
 2. _BITTToken_ - BITT Token contract
 3. _ITO_ - ITO contract
 
@@ -41,7 +41,6 @@ To start working with contract you should follow next steps:
 3. Call 'deploy' function on addres from (3). Gas 4000000 (actually 3979551). 
 
 Contract manager must call finishMinting after each crowdsale milestone!
-To support external mint service manager should specify address by calling _setDirectMintAgent_. After that specified address can direct mint tokens by calling _mintTokensByETHExternal_ and _mintTokensExternal_.
 
 ### How to invest
 To purchase tokens investor should send ETH (more than minimum 0.1 ETH) to corresponding crowdsale contract.
@@ -65,7 +64,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Reserv_          : 3%
 * _Bounty_          : 2%
 
-## Tokens distribution for BITS
+## Tokens distribution for BITZ
 
 * _Manual_          : 60%
 * _For sale agent_  : 20%
@@ -74,20 +73,20 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 ## Main network configuration 
 
 * _BITT Manual tokens wallet_    : 0x08C32a099E59c7e913B16cAd4a6C988f1a5A7216
-* _BITS Manual tokens wallet_    : 0xc0f1a3E91C2D0Bcc5CD398D05F851C2Fb1F3fE30
+* _BITZ Manual tokens wallet_    : 0xc0f1a3E91C2D0Bcc5CD398D05F851C2Fb1F3fE30
 * _BITT Founders tokens wallet_  : 0x3019B9ad002Ddec2F49e14FB591c8CcD81800847
-* _BITS Founders tokens wallet_  : 0x3019B9ad002Ddec2F49e14FB591c8CcD81800847
+* _BITZ Founders tokens wallet_  : 0x3019B9ad002Ddec2F49e14FB591c8CcD81800847
 * _BITT Advisors tokens wallet_  : 0x18fd87AAB645fd4c0cEBc21fb0a271E1E2bA5363
 * _BITT Reserv tokens wallet_    : 0x1eC03A084Cc02754776a9fEffC4b47dAE4800620
 * _BITT Bounty tokens wallet_    : 0xb119f842E6A10Dc545Af3c53ff28250B5F45F9b2
 * _BITT Tokens for sale agent_   : 0x5b2A9b86113632d086CcD8c9dAf67294eda78105
-* _BITS Tokens for sale agent_   : 0x04eb6a716c814b0B4A12dC9964916D64C55179C1
+* _BITZ Tokens for sale agent_   : 0x04eb6a716c814b0B4A12dC9964916D64C55179C1
 * _Contracts manager_            : 0xe99c8d442a5484bE05E3A5AB1AeA967caFf07133
 * _ETH Collect wallet_           : 0xc3d1F75e71DfBD3F7D34C6852F4eC6621C32745f
 
 ### Links
 1. _BITT Token_ - 
-2. _BITS Token_ - 
+2. _BITZ Token_ - 
 3. _ITO_ - 
 
 

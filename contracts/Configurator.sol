@@ -2,13 +2,13 @@ pragma solidity ^0.4.18;
 
 import './ownership/Ownable.sol';
 import './BITTToken.sol';
-import './BITSToken.sol';
+import './BITZToken.sol';
 
 contract Configurator is Ownable {
 
   CommonToken public bittToken;
 
-  CommonToken public bitsToken;
+  CommonToken public bitzToken;
 
   function deploy() public onlyOwner {
     address manager = 0xe99c8d442a5484bE05E3A5AB1AeA967caFf07133;
@@ -23,13 +23,12 @@ contract Configurator is Ownable {
     bittToken.init();
     bittToken.transferOwnership(manager);
 
-    bitsToken = new BITSToken();
-    bitsToken.addWallet(0xc0f1a3E91C2D0Bcc5CD398D05F851C2Fb1F3fE30, 60);
-    bitsToken.addWallet(0x3019B9ad002Ddec2F49e14FB591c8CcD81800847, 20);
-    bitsToken.addWallet(0x04eb6a716c814b0B4A12dC9964916D64C55179C1, 20);
-
-    bittToken.init();
-    bittToken.transferOwnership(manager);
+    bitzToken = new BITZToken();
+    bitzToken.addWallet(0xc0f1a3E91C2D0Bcc5CD398D05F851C2Fb1F3fE30, 60);
+    bitzToken.addWallet(0x3019B9ad002Ddec2F49e14FB591c8CcD81800847, 20);
+    bitzToken.addWallet(0x04eb6a716c814b0B4A12dC9964916D64C55179C1, 20);
+    bitzToken.init();
+    bitzToken.transferOwnership(manager);
   }
 
 }
