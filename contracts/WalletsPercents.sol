@@ -6,7 +6,7 @@ contract WalletsPercents is Ownable {
 
   address[] public wallets;
 
-  mapping (address => uint) percents;
+  mapping (address => uint) public percents;
 
   function addWallet(address wallet, uint percent) public onlyOwner {
     wallets.push(wallet);

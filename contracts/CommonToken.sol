@@ -4,7 +4,9 @@ import './token/StandardToken.sol';
 import './WalletsPercents.sol';
 import './ReceivingContractCallback.sol';
 
-contract CommonToken is StandardToken, Ownable {
+contract CommonToken is StandardToken, WalletsPercents {
+
+  event Mint(address indexed to, uint256 amount);
 
   uint public constant PERCENT_RATE = 100;
 
@@ -22,17 +24,17 @@ contract CommonToken is StandardToken, Ownable {
   
   bool public initialized = false;
 
-  function init() internal {
+  function init() public onlyOwner {
     require(!initialized);
     totalSupply = 500000000000000000000000000;
     balances[this] = totalSupply;
     tokenHolders.push(this);
-    Mint(this, totoalSupply);
+    Mint(this, totalSupply);
     unlockedAddresses[this] = true;
     unlockedAddresses[owner] = true;
     for(uint i = 0; i < wallets.length; i++) {
       address wallet = wallets[i];      
-      uint amount = totalSupply.mul(percents[wallet]).div(percentRate));
+      uint amount = totalSupply.mul(percents[wallet]).div(PERCENT_RATE);
       transfer(wallet, amount);
     }
     unlockedAddresses[owner] = true;
@@ -49,17 +51,17 @@ contract CommonToken is StandardToken, Ownable {
     _;
   }
 
-  function transferOwnership() public {
+  function transferOwnership(address to) public {
     unlockedAddresses[owner] = false;
-    super.transferOwnership();
+    super.transferOwnership(to);
     unlockedAddresses[owner] = true;
   }
 
-  function addUnlockedAddress(address addressToUnlock) onlyOwnerOrSaleAgent {
+  function addUnlockedAddress(address addressToUnlock) public onlyOwnerOrSaleAgent {
     unlockedAddresses[addressToUnlock] = true;
   }
 
-  function removeUnlockedAddress(address addressToUnlock) onlyOwnerOrSaleAgent {
+  function removeUnlockedAddress(address addressToUnlock) public onlyOwnerOrSaleAgent {
     unlockedAddresses[addressToUnlock] = false;
   }
 
@@ -69,8 +71,8 @@ contract CommonToken is StandardToken, Ownable {
 
   function setSaleAgent(address newSaleAgent) public onlyOwnerOrSaleAgent {
     unlockedAddresses[saleAgent] = false;
-    saleAgent = newSaleAgnet;
-    transfer(newSaleAgent, balances[this]) 
+    saleAgent = newSaleAgent;
+    if(balanceOf(this) > 0) transfer(newSaleAgent, balances[this]); 
     unlockedAddresses[saleAgent] = true;
   }
 
@@ -99,6 +101,5 @@ contract CommonToken is StandardToken, Ownable {
     }
     return result;
   }
-
 
 }

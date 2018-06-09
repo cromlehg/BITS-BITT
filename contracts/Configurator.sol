@@ -1,68 +1,33 @@
 pragma solidity ^0.4.18;
 
 import './ownership/Ownable.sol';
-import './GeseToken.sol';
-import './PreITO.sol';
-import './ITO.sol';
+import './BITTToken.sol';
+import './BITSToken.sol';
 
 contract Configurator is Ownable {
 
-  MintableToken public token;
+  CommonToken public bittToken;
 
-  PreITO public preITO;
-
-  ITO public ito;
+  CommonToken public bitsToken;
 
   function deploy() public onlyOwner {
-
-    token = new GeseToken();
-
-    preITO = new PreITO();
-
-    preITO.setWallet(0xa86780383E35De330918D8e4195D671140A60A74);
-    preITO.setStart(1529971200);
-    preITO.setPeriod(14);
-    preITO.setPrice(786700);
-    preITO.setMinInvestedLimit(100000000000000000);
-    preITO.setHardcap(3818000000000000000000);
-    preITO.setSoftcap(3640000000000000000000);
-    preITO.setReferalsMinInvestLimit(100000000000000000);
-    preITO.setRefererPercent(5);
-    preITO.setToken(token);
-
-    token.setSaleAgent(preITO);
-
-    ito = new ITO();
-
-    ito.setWallet(0x98882D176234AEb736bbBDB173a8D24794A3b085);
-    ito.setStart(1536105600);
-    ito.addMilestone(5, 33);
-    ito.addMilestone(5, 18);
-    ito.addMilestone(5, 11);
-    ito.addMilestone(5, 5);
-    ito.addMilestone(10, 0);
-    ito.setPrice(550000);
-    ito.setMinInvestedLimit(100000000000000000);
-    ito.setHardcap(49090000000000000000000);
-    ito.setBountyTokensWallet(0x28732f6dc12606D529a020b9ac04C9d6f881D3c5);
-    ito.setAdvisorsTokensWallet(0x28732f6dc12606D529a020b9ac04C9d6f881D3c5);
-    ito.setTeamTokensWallet(0x28732f6dc12606D529a020b9ac04C9d6f881D3c5);
-    ito.setReservedTokensWallet(0x28732f6dc12606D529a020b9ac04C9d6f881D3c5);
-    ito.setBountyTokensPercent(5);
-    ito.setAdvisorsTokensPercent(10);
-    ito.setTeamTokensPercent(10);
-    ito.setReservedTokensPercent(10);
-    ito.setReferalsMinInvestLimit(100000000000000000);
-    ito.setRefererPercent(5);
-    ito.setToken(token);
-
-    preITO.setNextSaleAgent(ito);
-
     address manager = 0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770;
 
-    token.transferOwnership(manager);
-    preITO.transferOwnership(manager);
-    ito.transferOwnership(manager);
+    bitsToken = new BITSToken();
+    bitsToken.addWallet(0x08C32a099E59c7e913B16cAd4a6C988f1a5A7216, 60);
+    bitsToken.addWallet(0x3019B9ad002Ddec2F49e14FB591c8CcD81800847, 10);
+    bitsToken.addWallet(0x18fd87AAB645fd4c0cEBc21fb0a271E1E2bA5363, 5);
+    bitsToken.addWallet(0x1eC03A084Cc02754776a9fEffC4b47dAE4800620, 3);
+    bitsToken.addWallet(0xb119f842E6A10Dc545Af3c53ff28250B5F45F9b2, 2);
+    bitsToken.init();
+    bitsToken.transferOwnership(manager);
+
+    bitsToken = new BITSToken();
+    bitsToken.addWallet(0xc0f1a3E91C2D0Bcc5CD398D05F851C2Fb1F3fE30, 60);
+    bitsToken.addWallet(0x3019B9ad002Ddec2F49e14FB591c8CcD81800847, 60);
+
+    bittToken.init();
+    bittToken.transferOwnership(manager);
   }
 
 }
