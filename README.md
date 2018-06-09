@@ -80,6 +80,8 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _BITT Advisors tokens wallet_  : 0x18fd87AAB645fd4c0cEBc21fb0a271E1E2bA5363
 * _BITT Reserv tokens wallet_    : 0x1eC03A084Cc02754776a9fEffC4b47dAE4800620
 * _BITT Bounty tokens wallet_    : 0xb119f842E6A10Dc545Af3c53ff28250B5F45F9b2
+* _BITT Tokens for sale agent_   : 0x5b2A9b86113632d086CcD8c9dAf67294eda78105
+* _BITS Tokens for sale agent_   : 0x04eb6a716c814b0B4A12dC9964916D64C55179C1
 * _Contracts manager_            :
 * _ETH Collect wallet_           : 0xc3d1F75e71DfBD3F7D34C6852F4eC6621C32745f
 

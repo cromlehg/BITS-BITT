@@ -12,13 +12,11 @@ contract CommonToken is StandardToken, WalletsPercents {
 
   uint32 public constant decimals = 18;
 
-  address public saleAgent;
-
   address[] public tokenHolders;
 
   bool public locked = false;
 
-  mapping(address => bool)  public registeredCallbacks;
+  mapping (address => bool)  public registeredCallbacks;
 
   mapping (address => bool) public unlockedAddresses;
   
@@ -41,11 +39,6 @@ contract CommonToken is StandardToken, WalletsPercents {
     initialized = true;
   }
 
-  modifier onlyOwnerOrSaleAgent() {
-    require(msg.sender == saleAgent || msg.sender == owner);
-    _;
-  }
-
   modifier notLocked(address sender) {
     require(!locked || unlockedAddresses[msg.sender]);
     _;
@@ -57,23 +50,20 @@ contract CommonToken is StandardToken, WalletsPercents {
     unlockedAddresses[owner] = true;
   }
 
-  function addUnlockedAddress(address addressToUnlock) public onlyOwnerOrSaleAgent {
+  function addUnlockedAddress(address addressToUnlock) public onlyOwner {
     unlockedAddresses[addressToUnlock] = true;
   }
 
-  function removeUnlockedAddress(address addressToUnlock) public onlyOwnerOrSaleAgent {
+  function removeUnlockedAddress(address addressToUnlock) public onlyOwner {
     unlockedAddresses[addressToUnlock] = false;
   }
 
-  function setLocked(bool newLock) public onlyOwnerOrSaleAgent {
-    locked = newLock;
+  function unlockBatchOfAddresses(address[] addressesToUnlock) public onlyOwner {
+    for(uint i = 0; i < addressesToUnlock.length; i++) unlockedAddresses[addressesToUnlock[i]] = true;
   }
 
-  function setSaleAgent(address newSaleAgent) public onlyOwnerOrSaleAgent {
-    unlockedAddresses[saleAgent] = false;
-    saleAgent = newSaleAgent;
-    if(balanceOf(this) > 0) transfer(newSaleAgent, balances[this]); 
-    unlockedAddresses[saleAgent] = true;
+  function setLocked(bool newLock) public onlyOwner {
+    locked = newLock;
   }
 
   function transfer(address to, uint256 value) public notLocked(msg.sender) returns (bool) {
