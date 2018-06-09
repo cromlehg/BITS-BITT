@@ -82,7 +82,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _BITT Bounty tokens wallet_    : 0xb119f842E6A10Dc545Af3c53ff28250B5F45F9b2
 * _BITT Tokens for sale agent_   : 0x5b2A9b86113632d086CcD8c9dAf67294eda78105
 * _BITS Tokens for sale agent_   : 0x04eb6a716c814b0B4A12dC9964916D64C55179C1
-* _Contracts manager_            :
+* _Contracts manager_            : 0xe99c8d442a5484bE05E3A5AB1AeA967caFf07133
 * _ETH Collect wallet_           : 0xc3d1F75e71DfBD3F7D34C6852F4eC6621C32745f
 
 ### Links

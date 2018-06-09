@@ -11,7 +11,7 @@ contract Configurator is Ownable {
   CommonToken public bitsToken;
 
   function deploy() public onlyOwner {
-    address manager = 0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770;
+    address manager = 0xe99c8d442a5484bE05E3A5AB1AeA967caFf07133;
 
     bittToken = new BITTToken();
     bittToken.addWallet(0x08C32a099E59c7e913B16cAd4a6C988f1a5A7216, 60);
