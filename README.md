@@ -1,6 +1,6 @@
 ![BITT and BITZ Tokens](logo.png "BITT and BITZ Token")
 
-# BITS Token smart contract
+# BITZ Token smart contract
 
 * _Standard_        : [ERC20](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md)
 * _[Name](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md#name)_            : BITZ
