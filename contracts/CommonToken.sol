@@ -35,12 +35,11 @@ contract CommonToken is StandardToken, WalletsPercents {
       uint amount = totalSupply.mul(percents[wallet]).div(PERCENT_RATE);
       transfer(wallet, amount);
     }
-    unlockedAddresses[owner] = true;
     initialized = true;
   }
 
   modifier notLocked(address sender) {
-    require(!locked || unlockedAddresses[msg.sender]);
+    require(!locked || unlockedAddresses[sender]);
     _;
   }
 
