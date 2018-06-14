@@ -21,7 +21,8 @@
   "devDependencies": {},
   "scripts": {
     "compile": " rm -rf ./build && ./node_modules/.bin/truffle compile",
-    "test": "./scripts/test.sh"
+    "test": "./scripts/test.sh",
+    "flatten": "./node_modules/.bin/truffle-flattener ./contracts/Configurator.sol > ./deploy/Contracts.sol"
   },
   "repository": {
     "type": "git",
