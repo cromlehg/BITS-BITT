@@ -85,8 +85,8 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _ETH Collect wallet_           : 0xc3d1F75e71DfBD3F7D34C6852F4eC6621C32745f
 
 ### Links
-1. _BITT Token_ - 
-2. _BITZ Token_ - 
+1. _BITT Token_ - https://etherscan.io/token/0x42588776f50789ae5ce2d9ce0c63f5dfe12f758c
+2. _BITZ Token_ - https://etherscan.io/token/0xa5e4499d672e58619459dce980427280430f2e23
 3. _ITO_ - 
 
 
