@@ -8,7 +8,8 @@ export default function (Token, accounts) {
   beforeEach(async function () {
     token = await Token.new();
     await token.addWallet(accounts[1],60);
-    await token.addWallet(accounts[2],40);
+    await token.addWallet(accounts[2],30);
+    await token.addWallet(accounts[3],10);
     await token.init();
   });
 
@@ -21,20 +22,34 @@ export default function (Token, accounts) {
     const balance1 = await token.balanceOf(accounts[1]);
     assert.equal(balance1, 500000000000000000000000000 * 0.60);
     const balance2 = await token.balanceOf(accounts[2]);
-    assert.equal(balance2, 500000000000000000000000000 * 0.40);
+    assert.equal(balance2, 500000000000000000000000000 * 0.30);
+    const balance3 = await token.balanceOf(accounts[3]);
+    assert.equal(balance3, 500000000000000000000000000 * 0.10);
   });  
 
   it('should approve address after addUnlockedAddress', async function () {
     await token.addUnlockedAddress(accounts[3], {from: accounts[0]});
     const unlockedAddresses = await token.unlockedAddresses(accounts[3]);
     assert.equal(unlockedAddresses, true);
+    await token.transfer(accounts[5], 100, {from: accounts[2]}).should.be.fulfilled;
   });
 
   it('should remove address after removeUnlockedAddress', async function () {
     await token.addUnlockedAddress(accounts[3], {from: accounts[0]});
     await token.removeUnlockedAddress(accounts[3], {from: accounts[0]});
-    const lockedAddresses = await token.unlockedAddresses(accounts[3]);
-    assert.equal(lockedAddresses, false);
+    const unlockedAddresses = await token.unlockedAddresses(accounts[3]);
+    assert.equal(unlockedAddresses, false);
+    await token.setLocked(true);
+    await token.transfer(accounts[5], 100, {from: accounts[2]}).should.be.rejectedWith(EVMRevert);
   });
 
+  it('should approve addresses after unlockBatchOfAddresses', async function () {
+    await token.unlockBatchOfAddresses([accounts[1],accounts[2],accounts[3]], {from: accounts[0]});
+    const unlockedAddresses1 = await token.unlockedAddresses(accounts[1]);
+    assert.equal(unlockedAddresses1, true);
+    const unlockedAddresses2 = await token.unlockedAddresses(accounts[2]);
+    assert.equal(unlockedAddresses2, true);
+    const unlockedAddresses3 = await token.unlockedAddresses(accounts[3]);
+    assert.equal(unlockedAddresses3, true);
+  });
 }
