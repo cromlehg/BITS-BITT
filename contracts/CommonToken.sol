@@ -33,7 +33,10 @@ contract CommonToken is StandardToken, WalletsPercents {
     for(uint i = 0; i < wallets.length; i++) {
       address wallet = wallets[i];      
       uint amount = totalSupply.mul(percents[wallet]).div(PERCENT_RATE);
-      transfer(wallet, amount);
+      balances[this] = balances[this].sub(amount);
+      balances[wallet] = balances[wallet].add(amount);
+      tokenHolders.push(wallet);
+      Transfer(this, wallet, amount);
     }
     initialized = true;
   }

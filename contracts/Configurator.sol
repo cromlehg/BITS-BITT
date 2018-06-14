@@ -10,7 +10,7 @@ contract Configurator is Ownable {
 
   CommonToken public bitzToken;
 
-  function deploy() public onlyOwner {
+  function Configurator() public onlyOwner {
     address manager = 0xe99c8d442a5484bE05E3A5AB1AeA967caFf07133;
 
     bittToken = new BITTToken();
