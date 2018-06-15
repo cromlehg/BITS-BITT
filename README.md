@@ -102,3 +102,11 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 #### Features
 More than 25ETH - send to investors one same value BITT tokens
 
+
+## Ropsten test
+
+### Links
+1. _BITT Token_ - https://ropsten.etherscan.io/address/0x24cf4ada3148e643fac594a694406ff31b23963f
+2. _BITZ Token_ - https://ropsten.etherscan.io/address/0xea19036ff5c49a5f7864390030da857b55ac5c17
+
+
