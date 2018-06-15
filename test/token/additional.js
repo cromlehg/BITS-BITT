@@ -31,7 +31,8 @@ export default function (Token, accounts) {
     await token.addUnlockedAddress(accounts[3], {from: accounts[0]});
     const unlockedAddresses = await token.unlockedAddresses(accounts[3]);
     assert.equal(unlockedAddresses, true);
-    await token.transfer(accounts[5], 100, {from: accounts[2]}).should.be.fulfilled;
+    await token.setLocked(true, {from: accounts[0]});
+    await token.transfer(accounts[5], 100, {from: accounts[3]}).should.be.fulfilled;
   });
 
   it('should remove address after removeUnlockedAddress', async function () {
@@ -39,8 +40,8 @@ export default function (Token, accounts) {
     await token.removeUnlockedAddress(accounts[3], {from: accounts[0]});
     const unlockedAddresses = await token.unlockedAddresses(accounts[3]);
     assert.equal(unlockedAddresses, false);
-    await token.setLocked(true);
-    await token.transfer(accounts[5], 100, {from: accounts[2]}).should.be.rejectedWith(EVMRevert);
+    await token.setLocked(true, {from: accounts[0]});
+    await token.transfer(accounts[5], 100, {from: accounts[3]}).should.be.rejectedWith(EVMRevert);
   });
 
   it('should approve addresses after unlockBatchOfAddresses', async function () {
@@ -51,5 +52,17 @@ export default function (Token, accounts) {
     assert.equal(unlockedAddresses2, true);
     const unlockedAddresses3 = await token.unlockedAddresses(accounts[3]);
     assert.equal(unlockedAddresses3, true);
+  });
+
+  it('should correct change owner', async function () {
+    const other = accounts[6];
+    await token.transfer(other, 100, {from: accounts[1]});
+    await token.transferOwnership(other, {from: accounts[0]});
+    const owner = await token.owner();
+    assert.isTrue(owner === other);
+    const unlockedAddresses = await token.unlockedAddresses(other);
+    assert.equal(unlockedAddresses, true);
+    await token.setLocked(true, {from: other});
+    await token.transfer(accounts[5], 100, {from: other}).should.be.fulfilled;
   });
 }
